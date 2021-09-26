@@ -1,11 +1,11 @@
 import React from 'react';
-import BarChart from './Components/BarChart';
+import MyMapp from './Components/Map/MyMapp';
 import './App.css';
 
 const App = () => {
   return(
     <div>
-      <BarChart/>
+      <MyMapp/>
     </div>
   )
 }
