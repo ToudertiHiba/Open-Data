@@ -49,6 +49,7 @@ class MyMapp extends Component {
                     fillColor:"yellow",
 
                 });
+                
             },
             mouseover:(event)=>{
                 event.target.setStyle({
@@ -58,9 +59,9 @@ class MyMapp extends Component {
                     fillOpacity: 0.7                    
                 });
             },
-            // mouseout:(event)=>{
-            //     geoJSON.resetStyle(event.target);
-            // }
+            mouseout:(event)=>{
+                event.target.setStyle(this.countryStyle())
+            }
         })
 
     }
