@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GeoJSON } from "react-leaflet";
-import countries from './../../Data/countries.json';
+//import countries from './../../Data/countries.json';
+ import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/newResult.json';
 import "leaflet/dist/leaflet.css";
 import "./MyMapp.css";
@@ -145,7 +146,8 @@ class MyMapp extends Component {
         
         //console.log(this.getPrincipalCause(feature.properties.ISO_A3,"2000"));
         //let cause = this.getPrincipalCause("-99","2000")[0];
-        let cause = this.getPrincipalCause(feature.properties.ISO_A3,this.state.year)[0];
+        // let cause = this.getPrincipalCause(feature.properties.ISO_A3,this.state.year)[0];
+        let cause = this.getPrincipalCause(feature.id,this.state.year)[0];
         //console.log(cause)
         // console.log(this.getColor(cause))
         // console.log(this.state.causeColor)
@@ -199,7 +201,7 @@ class MyMapp extends Component {
                 
             },
             mouseout:(event)=>{
-                event.target.setStyle(this.resetStyle(country.properties.ISO_A3,this.state.year));
+                event.target.setStyle(this.resetStyle(country.id,this.state.year));
                 //this.refs.geojson.leafletElement.resetStyle(event.target);
             }
         })
