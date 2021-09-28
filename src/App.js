@@ -1,13 +1,13 @@
 import React from 'react';
 import MyMapp from './Components/Map/MyMapp';
-import BarChart from './Components/BarChart/BarChart';
+import AnimatableBarChart2 from "./Components/BarChart/AnimatableBarChart2"
+import Slider from './Components/BarChart/Play';
 import './App.css';
 
 const App = () => {
   return(
     <div>
       <MyMapp/>
-      {/* <BarChart></BarChart> */}
     </div>
   )
 }
