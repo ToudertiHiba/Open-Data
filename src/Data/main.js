@@ -9,10 +9,10 @@ function devideHeaders(str) {
         if (str.charAt(index) == '"') {
             while (str.charAt(++index) != '"' && index < str.length);
         } else if (str.charAt(index) == ',') {
-            if (str.charAt(start_index) == '"'){
+            if (str.charAt(start_index) == '"') {
                 parts.push(str.substring(start_index + 1, index - 1).trim());
             }
-            else{
+            else {
                 parts.push(str.substring(start_index, index).trim());
             }
             start_index = index + 1;
@@ -21,34 +21,57 @@ function devideHeaders(str) {
     parts.push(str.substring(start_index).trim());
     return parts;
 }
+
 function processDatatoJSON(allText) {
     let allLines = allText.split(/\r\n|\n/);
     let headers = devideHeaders(allLines[0]);
-    headers.forEach(element => {
-        console.log(element)
-    });
+    // headers.forEach(element => {
+    //     console.log(element)
+    // });
     const headersMap = {};
     for (let headerCode = 0; headerCode < headers.length; headerCode++) {
         headersMap[headerCode] = headers[headerCode];
     }
-    const country = {};
+    const listCountries = [];
     // console.log(headersMap);
     for (let line = 1; line < allLines.length; line++) {
         const data = allLines[line].split(',');
-        const countryName = data[0];
-        const code = data[1];
-        const year = data[2];
-        if (!country[code]) {
-            country[code] = { countryName };
-            country[code]["year"] = {};
-        }
-        country[code]["year"][year] = {};
+        let countryAlreadyFound = false;
+        listCountries.forEach(object => {
+            if (object.code === data[1]) {
+                countryAlreadyFound = true;
 
-        for (let headerCode = 3; headerCode < data.length; headerCode++) {
-            country[code]["year"][year][headers[headerCode]] = data[headerCode];
+                const year = data[2];
+                object.years[year] = {}
+
+                for (let headerCode = 3; headerCode < data.length; headerCode++) {
+                    object.years[year][headers[headerCode]] = data[headerCode];
+                }
+            }
+        });
+        if (!countryAlreadyFound) {
+            let country = {}
+            country.code = data[1]
+            country.countryName = data[0]
+
+            country.years = {}
+            const year = data[2];
+            country.years[year] = {}
+
+            for (let headerCode = 3; headerCode < data.length; headerCode++) {
+                country.years[year][headers[headerCode]] = data[headerCode];
+            }
+            listCountries.push(country)
         }
+        // if (!country[code]) {
+        //     country[code] = { countryName };
+        //     country[code]["year"] = {};
+        // }
+        // country[code]["year"][year] = {};
+
+
     }
-    return country;
+    return listCountries;
 }
 
 
@@ -65,4 +88,3 @@ function main() {
 }
 
 main();
-
