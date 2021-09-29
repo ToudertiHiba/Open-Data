@@ -10,7 +10,8 @@ import ReactModal from 'react-modal';
 import CauseMap from './CauseMap';
 
 import countries from './../../Data/countries-50m.json';
-import ListCountry from './../../Data/SpecificCauses.json';
+
+import ListCountry from './../../Data/countries.json';
 import NavBar from './../NavBar/Navbar'
 import AnimatableBarChart2 from '../BarChart/AnimatableBarChart2'
 
@@ -29,17 +30,20 @@ const MyMapBackup = (props) => {
     ]
     const [play, setPlay] = useState(true)
     const causeList = [
-        "Maladies cardiovasculaires",
-        "Cancer",
-
-        "Utilisation d'alcool et de drogues",
-        "Suicide",
-
-        "Déficiences nutritionnelles",
         "Maladies respiratoires",
-
-        "Accidents de route"]
-    const causeColor = ["#e6194B", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4"]
+        "Maladies cardiovasculaires",
+        "Alzheimer et autres démences",
+        "Maladies hépatiques",
+        "Maladies digestives",
+        "Cancers",
+        "Utilisation d'alcool et de drogues",
+        "Accidents de route",
+        "Affections néonatales",
+        "Maladies diarrhéiques",
+        "Déficiences nutritionnelles",
+        "Suicides",
+        "Diabètes"]
+    const causeColor = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
     // console.log(causeColor)
     const noDataColor = "red"
 
@@ -59,9 +63,14 @@ const MyMapBackup = (props) => {
 
             let dataLine = {}
             dataLine.cause = causeList[i]
-            dataLine.couleur = <div style={{ backgroundColor: getColor(dataLine.cause), height: 30, width: 30, borderWidth: 1, borderColor: "#000", borderRadius: 5, borderStyle: "solid" }}></div>
+            dataLine.couleur = <div style={{ backgroundColor: getColor(dataLine.cause), height: 28, width: 28, borderWidth: 1, borderColor: "#000", borderRadius: 5, borderStyle: "solid" }}></div>
             data.push(dataLine)
         }
+
+        let dataLine = {}
+            dataLine.cause = "Pas de données"
+            dataLine.couleur = <div style={{ backgroundColor: "red", height: 28, width: 28, borderWidth: 1, borderColor: "#000", borderRadius: 5, borderStyle: "solid" }}></div>
+            data.push(dataLine)
 
         //console.log(data)
         return data

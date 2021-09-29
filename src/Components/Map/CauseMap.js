@@ -7,7 +7,7 @@ import RangeSlider from 'react-bootstrap-range-slider';
 import { withRouter } from "react-router-dom";
 
 import countries from './../../Data/countries-50m.json';
-import ListCountry from './../../Data/SpecificCauses.json';
+import ListCountry from './../../Data/countries.json';
 
 import "./grid-container.css";
 import "leaflet/dist/leaflet.css";
@@ -23,18 +23,23 @@ const CauseMap = (props) => {
         [-89, -179]
     ]
     const [play, setPlay] = useState(true)
+    
     const causeList = [
-        "Maladies cardiovasculaires",
-        "Cancer",
-
-        "Utilisation d'alcool et de drogues",
-        "Suicide",
-
-        "Déficiences nutritionnelles",
         "Maladies respiratoires",
+        "Maladies cardiovasculaires",
+        "Alzheimer et autres démences",
+        "Maladies hépatiques",
+        "Maladies digestives",
+        "Cancers",
+        "Utilisation d'alcool et de drogues",
+        "Accidents de route",
+        "Affections néonatales",
+        "Maladies diarrhéiques",
+        "Déficiences nutritionnelles",
+        "Suicides",
+        "Diabètes"]
+    const causeColor = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
 
-        "Accidents de route"]
-    const causeColor = ["#e6194B", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4"]
     // console.log(causeColor)
     const noDataColor = "red"
 

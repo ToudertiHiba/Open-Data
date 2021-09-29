@@ -1,4 +1,4 @@
-import JSONdata from './../../Data/SpecificCauses.json'
+import JSONdata from './../../Data/countries.json'
 import React, { useEffect, useState } from 'react';
 import ChartRace from 'react-chart-race';
 import Button from 'react-bootstrap/Button';
@@ -30,7 +30,9 @@ const Slider = (props) => {
     years.forEach(year => {
         const labels = Object.keys(country.years[year])
         const dataset = Object.values(country.years[year])
-        const colors = ["#e6194B", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4"]
+        
+    const colors = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
+    
         var dataYear = {}
         dataYear.name = year
         dataYear.value = []
@@ -76,9 +78,9 @@ const Slider = (props) => {
                 
                 <ChartRace
                     data={data}
-                    padding={30}
-                    itemHeight={58}
-                    gap={12}
+                    padding={10}
+                    itemHeight={35}
+                    gap={6}
                     titleStyle={{ font: 'normal 400 13px Arial', color: '#000' }}
                     valueStyle={{ font: 'normal 400 11px Arial', color: '#000' }}
                 />
