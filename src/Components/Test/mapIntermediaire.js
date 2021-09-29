@@ -40,7 +40,7 @@ const MyMapBackup = (props) => {
             )
     )
 
-    console.log(causeColor)
+    //console.log(causeColor)
     const red = "red"
 
     const getColor = (cause) => {
@@ -51,7 +51,6 @@ const MyMapBackup = (props) => {
         }
         return red;
     }
-
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -113,12 +112,7 @@ const MyMapBackup = (props) => {
         });
         //console.log(objet);
         return ab;
-
     }
-
-
-
-
 
     // là il faut passer un parametre à la fct, afin de recuperer la cause 
     let countryStyle = (feature) => {
@@ -192,7 +186,6 @@ const MyMapBackup = (props) => {
 
     }
 
-
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>
@@ -240,7 +233,6 @@ const MyMapBackup = (props) => {
             </div>
         </div>
     )
-
 }
 
 export default withRouter(MyMapBackup);

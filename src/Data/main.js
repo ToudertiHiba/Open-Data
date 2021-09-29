@@ -80,7 +80,6 @@ function processDatatoJSON(allText) {
         const year = data[2];
         country.years[year] = {}
 
-
         Object.keys(causeDictionary).forEach(resultCause => {
 
             //This is the list of causes we are searching for:
@@ -104,7 +103,6 @@ function processDatatoJSON(allText) {
     }
     return listCountries;
 }
-
 
 function main() {
     const txtFile = fs.readFileSync("./annualNumberOfDeathsByCause.csv").toString();

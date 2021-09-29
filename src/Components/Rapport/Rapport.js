@@ -16,7 +16,7 @@ const Rapport = () => {
                 <h4 class="marginT">Introduction</h4>
                 <p class="pJustify">
                     Le projet challenge Open Data nous offre l’opportunité de créer une application web de visualisation interactive, dédiée à l'exploration de données.<br />
-                    Dans le cadre de ce projet, nous avons décidé de nous intéresser aux causes de morts dans le monde dont les données sont disponibles sur le site https://ourworldindata.org/causes-of-death et sont issues de bases de données publiques et libres telles que l’IHME ou Amnesty international. 
+                    Dans le cadre de ce projet, nous avons décidé de nous intéresser aux causes de morts dans le monde dont les données sont disponibles sur le site <a href="https://ourworldindata.org/causes-of-death">ourworldindata.org</a> et sont issues de bases de données publiques et libres telles que l’IHME ou Amnesty international. 
                 </p>
                 
                 <h4 class="marginT">Description des données</h4>
