@@ -71,10 +71,12 @@ const Slider = (props) => {
 
     return (
         <div >
-            <div style={{marginLeft:"15cm"}} >
+            <div style={{textAlign:"left",fontSize:"20px"}}>{country.countryName}</div>
+            <div style={{marginLeft:"12.5cm"}} >
+                
                 <ChartRace
                     data={data}
-                    padding={12}
+                    padding={30}
                     itemHeight={58}
                     gap={12}
                     titleStyle={{ font: 'normal 400 13px Arial', color: '#000' }}
@@ -82,7 +84,7 @@ const Slider = (props) => {
                 />
             </div>
             <div >
-                <div style={{ display: "inline-block", margin: 0 }}>
+                <div style={{marginLeft:"20cm"}}>
                     <div>{'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}</div>
                     <Button style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }} togglable={"true"} onClick={() => setPlay(!play)}>
                         {play ? (

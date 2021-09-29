@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Map, GeoJSON } from "react-leaflet";
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause,faTimes } from "@fortawesome/free-solid-svg-icons";
 import RangeSlider from 'react-bootstrap-range-slider';
 import { withRouter } from "react-router-dom";
 import DataTable from "react-data-table-component";
@@ -266,10 +266,11 @@ const MyMapBackup = (props) => {
                         <button onClick={closeModal}>close</button>
                     </ReactModal>
                 ): modalIsOpen2 ?(
-                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{overlay:{backgroundColor:"transparent",margin:"50px"},content:{margin:"50px"}}} >
+                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{overlay:{backgroundColor:"rgba(0,0,0,.6)"},content:{margin:"50px"}}} >
                         <div>
+                            <Button className="button1" onClick={closeModal2}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
                             <AnimatableBarChart2 countryCode={countryCode}></AnimatableBarChart2>
-                            <button onClick={closeModal2}>close</button>
+                            
                         </div>
                     </ReactModal>
                 ) : (
