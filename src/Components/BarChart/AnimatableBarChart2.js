@@ -70,8 +70,8 @@ const Slider = (props) => {
     });
 
     return (
-        <div>
-            <div>
+        <div >
+            <div style={{marginLeft:"15cm"}} >
                 <ChartRace
                     data={data}
                     padding={12}
@@ -81,17 +81,20 @@ const Slider = (props) => {
                     valueStyle={{ font: 'normal 400 11px Arial', color: '#000' }}
                 />
             </div>
-            <div style={{ margin: 100 }}>
-                <div>{'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}</div>
-                <Button togglable={"true"} onClick={() => setPlay(!play)}>
-                    {play ? (
+            <div >
+                <div style={{ display: "inline-block", margin: 0 }}>
+                    <div>{'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}</div>
+                    <Button style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }} togglable={"true"} onClick={() => setPlay(!play)}>
+                        {play ? (
 
-                        <FontAwesomeIcon icon={faPause} />
-                    ) : (
+                            <FontAwesomeIcon icon={faPause} />
+                        ) : (
 
-                        <FontAwesomeIcon icon={faPlay} />
-                    )}
-                </Button>
+                            <FontAwesomeIcon icon={faPlay} />
+                        )}
+                    </Button>
+                </div>
+
                 <RangeSlider
                     value={parseInt(fullData[Math.min(yearId, years.length - 1)].name)}
                     min={parseInt(fullData[0].name)}
