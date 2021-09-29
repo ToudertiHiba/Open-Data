@@ -51,7 +51,7 @@ const CauseMap = (props) => {
 
     function getCauseColor(d) {
         return d > 0.1 ? '#800026' :
-            d > 0.035 ? '#BD0026' :
+            d > 0.05 ? '#BD0026' :
                 d > 0.03 ? '#E31A1C' :
                     d > 0.02 ? '#FC4E2A' :
                         d > 0.015 ? '#FD8D3C' :
@@ -153,22 +153,52 @@ const CauseMap = (props) => {
             }
         })
     }
+    const legend = () => {
+
+        const grades = [0, 0.5, 1, 1.5, 2, 3, 5, 10]
+        return grades.map((item, index) => {
+            if (index === grades.length - 1) {
+                return (
+                    <tr style={{ margin: 0 }}>
+                        <td style={{ margin: 0 }}> <div style={{ width: 30, height: 30, backgroundColor: getCauseColor(item / 100) }}></div></td>
+                        <td style={{ margin: 0 }}> {item}%+</td>
+                    </tr>
+                );
+            }
+            else {
+                return (
+                    <tr style={{ margin: 0 }}>
+                        <td style={{ margin: 0 }}> <div style={{ width: 30, height: 30, backgroundColor: getCauseColor(item / 100), margin: 0 }}></div></td>
+                        <td style={{ margin: 0 }}> {item}%-{grades[index + 1]}%</td>
+                    </tr>
+                );
+            }
+
+        });
+    }
 
 
     return (
-        <div className="grid-container">
+        <div>
 
-            <div className="NavBar">
-                {causeName}
+            <div style={{textAlign:"left",fontSize:"20px"}}>
+               <h3>{causeName} {years[Math.min(yearId, years.length - 1)]}</h3> 
             </div>
 
-            <div className="map">
+            <div style={{marginTop:"20px",marginLeft:"11cm"}}>
 
-                <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
+                <Map style={{ height: "60vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
                     <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
+                    <div style={{float: "left", borderWidth: 2, borderStyle: "solid", padding: 10, marginTop: 300 }}>
+                        <table style={{width:"50px",height:"20px"}}>
+                            {legend()}
+                        </table>
+                    </div>
                 </Map>
+                
 
             </div>
+
             {/* <div className="listCause"  >
 
                 <div style={{ margin: 20, boxShadow: 50 }}>
@@ -186,8 +216,9 @@ const CauseMap = (props) => {
                     />
                 </div>
             </div> */}
-            <div className="slider" >
-                <div style={{ display: "inline-block", margin: 0 }}>
+            <div  >
+                <div style={{marginLeft:"22cm",marginTop:"30px"}}>
+                    
                     <Button
                         style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }}
                         togglable={"true"}
@@ -200,9 +231,9 @@ const CauseMap = (props) => {
                     </Button>
                 </div>
 
-                <div style={{ display: "inline-block", width: window.innerWidth - 200, }}>
+                <div >
                     <RangeSlider
-                        style={{ paddingTop: 30 }}
+                        style={{ paddingTop: 10 }}
                         value={parseInt(years[yearId])}
                         min={parseInt(years[0])}
                         max={parseInt(years[years.length - 1])}

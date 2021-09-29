@@ -261,9 +261,10 @@ const MyMapBackup = (props) => {
 
             <div className="map">
                 {modalIsOpen ? (
-                    <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} contentLabel="exemple">
+                    <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} style={{overlay:{backgroundColor:"rgba(0,0,0,.6)"}}}>
+                        <Button className="button1" onClick={closeModal}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
                         <CauseMap causeName={causeName} />
-                        <button onClick={closeModal}>close</button>
+                        
                     </ReactModal>
                 ): modalIsOpen2 ?(
                     <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{overlay:{backgroundColor:"rgba(0,0,0,.6)"},content:{margin:"50px"}}} >
@@ -274,7 +275,7 @@ const MyMapBackup = (props) => {
                         </div>
                     </ReactModal>
                 ) : (
-                    <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
+                    <Map style={{ height: "80vh", width: "120vh",marginLeft:"5cm" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds}  >
                         <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                     </Map>
                 )}

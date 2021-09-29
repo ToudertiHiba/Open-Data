@@ -71,7 +71,7 @@ const Slider = (props) => {
 
     return (
         <div >
-            <div style={{textAlign:"left",fontSize:"20px"}}>{country.countryName}</div>
+            <div style={{textAlign:"left",fontSize:"20px"}}><h3>{country.countryName} {fullData[Math.min(yearId, years.length - 1)].name}</h3></div>
             <div style={{marginLeft:"12.5cm"}} >
                 
                 <ChartRace
@@ -85,7 +85,7 @@ const Slider = (props) => {
             </div>
             <div >
                 <div style={{marginLeft:"20cm"}}>
-                    <div>{'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}</div>
+                    
                     <Button style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }} togglable={"true"} onClick={() => setPlay(!play)}>
                         {play ? (
 
