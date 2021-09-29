@@ -265,8 +265,8 @@ const MyMapBackup = (props) => {
                         <CauseMap causeName={causeName} />
                         <button onClick={closeModal}>close</button>
                     </ReactModal>
-                ) : modalIsOpen2 ? (
-                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} contentLabel="exemple">
+                ): modalIsOpen2 ?(
+                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{overlay:{backgroundColor:"transparent",margin:"50px"},content:{margin:"50px"}}} >
                         <div>
                             <AnimatableBarChart2 countryCode={countryCode}></AnimatableBarChart2>
                             <button onClick={closeModal2}>close</button>
