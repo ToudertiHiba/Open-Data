@@ -234,8 +234,20 @@ const MyMapBackup = (props) => {
                 //     pathname: '/country/' + countryCode,
                 //     state: { countryCode: event.target.feature.id }
                 // })
-                setcountryCode(countryCode);
-                openModal2();
+                ListCountry.forEach(country => {
+                   
+                    if (country.code === countryCode) {
+                       
+                        let numberOfyears = Object.keys(country.years).length;
+                        if (numberOfyears === years.length) {
+                            setcountryCode(countryCode);
+                            openModal2();
+                        }
+                    
+                    }
+        
+                });
+
             },
             mouseover: (event) => {
                 event.target.setStyle({
@@ -284,7 +296,7 @@ const MyMapBackup = (props) => {
                         </div>
                     </ReactModal>
                 ) : (
-                    <Map style={{ height: "80vh", width: "120vh",marginLeft:"5cm" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds}  >
+                    <Map style={{ height: "80vh", width: "120vh",marginLeft:"5cm",marginTop: "10px" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds}  >
                         <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                     </Map>
                 )}

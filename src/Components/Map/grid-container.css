@@ -1,3 +1,4 @@
+
 .NavBar { grid-area: NavBar; }
 .map { grid-area: map; }
 .listCause { grid-area: listCause; }
@@ -17,11 +18,12 @@
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 10px 0;
-  font-size: 30px;
+  padding: 0px 0;
+  font-size: 20px;
 }
 .map{
   align-content: center;
+  
 }
 .button1 {
   width: 40;

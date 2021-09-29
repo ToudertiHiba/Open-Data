@@ -35,6 +35,7 @@ const Navbar = () => {
         </ul>
       </nav>
       <Modal
+        style={{overlay:{backgroundColor:"rgba(0,0,0,.6)"}}}
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
