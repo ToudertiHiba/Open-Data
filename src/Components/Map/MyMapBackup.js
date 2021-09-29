@@ -63,7 +63,7 @@ const MyMapBackup = (props) => {
             data.push(dataLine)
         }
 
-        console.log(data)
+        //console.log(data)
         return data
     }
 
