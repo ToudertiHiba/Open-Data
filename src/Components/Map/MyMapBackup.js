@@ -131,21 +131,21 @@ const MyMapBackup = (props) => {
             opacity: 1,
             color: 'white',
             dashArray: '3',
-            fillOpacity: 0.2
+            fillOpacity: 1
         }
     };
 
-    const resetStyle = (code, year) => {
-        const cause = getPrincipalCause(code, year)[0];
-        return {
-            fillColor: getColor(cause), //la ou il faut mettre getColor getColor(getPrincipalCause(feature.properties.ISO_A3,year))
-            weight: 2,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.2
-        }
-    }
+    // const resetStyle = (code, year) => {
+    //     const cause = getPrincipalCause(code, year)[0];
+    //     return {
+    //         fillColor: getColor(cause), //la ou il faut mettre getColor getColor(getPrincipalCause(feature.properties.ISO_A3,year))
+    //         weight: 2,
+    //         opacity: 1,
+    //         color: 'white',
+    //         dashArray: '3',
+    //         fillOpacity: 0.2
+    //     }
+    // }
     const pushToRoute = route => {
         props.history.push(route)
     }
@@ -173,14 +173,20 @@ const MyMapBackup = (props) => {
             },
             mouseover: (event) => {
                 event.target.setStyle({
-                    weight: 5,
-                    color: '#666',
+                    weight: 2,
+                    color: '#000',
                     dashArray: '',
                     fillOpacity: 0.7
                 });
             },
             mouseout: (event) => {
-                event.target.setStyle(resetStyle(country.id, years[yearId]));
+                event.target.setStyle({
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 1
+                });
                 //refs.geojson.leafletElement.resetStyle(event.target);
             }
         })

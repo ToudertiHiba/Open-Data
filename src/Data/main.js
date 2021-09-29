@@ -1,11 +1,30 @@
 const fs = require("fs-extra");
-const listCauses = [
-    "Meningitis",
-    "Lower respiratory infections",
-    "Cardiovascular diseases",
-    "Drug use disorders",
-    "Self-harm"
-]
+// const listCauses = [
+//     "Cardiovascular diseases",
+//     "Neoplasms",
+
+//     "Drug use disorders",
+//     "Alcohol use disorders",
+//     "Self-harm",
+
+//     "Nutritional deficiencies",
+//     "Lower respiratory infections",
+//     "Chronic respiratory diseases",
+
+//     "Road injuries",
+// ]
+const causeDictionary = {
+    "Maladies cardiovasculaires": ["Cardiovascular diseases"],
+    "Cancer": ["Neoplasms"],
+
+    "Utilisation d'alcool et de drogues": ["Drug use disorders", "Alcohol use disorders"],
+    "Suicide": ["Self-harm"],
+
+    "Déficiences nutritionnelles": ["Nutritional deficiencies"],
+    "Maladies respiratoires": ["Lower respiratory infections", "Chronic respiratory diseases"],
+
+    "Accidents de route": ["Road injuries"],
+}
 function devideHeaders(str) {
     var start_index = 0;
     var parts = [];
@@ -33,47 +52,68 @@ function processDatatoJSON(allText) {
     let headers = devideHeaders(allLines[0]);
 
     const listCountries = [];
+    // let line = 1
     for (let line = 1; line < allLines.length; line++) {
-        const data = allLines[line].split(',');
-        let countryAlreadyFound = false;
-        listCountries.forEach(object => {
-            if (object.code === data[1]) {
-                countryAlreadyFound = true;
+    const data = allLines[line].split(',');
+    let countryAlreadyFound = false;
 
-                const year = data[2];
-                object.years[year] = {}
-
-                for (let headerCode = 3; headerCode < headers.length; headerCode++) {
-                    for (let causeCode = 0; causeCode < listCauses.length; causeCode++) {
-
-                        if (headers[headerCode] === listCauses[causeCode]) {
-                            object.years[year][headers[headerCode]] = data[headerCode];
-                        }
-                    }
-
-                }
-            }
-        });
-        if (!countryAlreadyFound) {
-            let country = {}
-            country.code = data[1]
-            country.countryName = data[0]
-
-            country.years = {}
+    //on parcours la liste des pays
+    listCountries.forEach(country => {
+        if (country.code === data[1]) {
+            countryAlreadyFound = true;
             const year = data[2];
             country.years[year] = {}
 
-            for (let headerCode = 3; headerCode < headers.length; headerCode++) {
-                for (let causeCode = 0; causeCode < listCauses.length; causeCode++) {
+            Object.keys(causeDictionary).forEach(resultCause => {
 
-                    if (headers[headerCode] === listCauses[causeCode]) {
-                        country.years[year][headers[headerCode]] = data[headerCode];
+                //This is the list of causes we are searching for:
+                const listCausesPartielles = causeDictionary[resultCause]
+                // console.log(resultCause + " " + listCausesPartielles);
+
+                //We look for the elements inside the list and sum their pourcentages:
+
+                //we initialize the mainCause num with 0
+                country.years[year][resultCause] = 0
+                for (let headerCode = 3; headerCode < headers.length; headerCode++) {
+                    for (let causeCode = 0; causeCode < listCausesPartielles.length; causeCode++) {
+                        if (headers[headerCode] === listCausesPartielles[causeCode]) {
+                            country.years[year][resultCause] += parseFloat(data[headerCode]);
+                        }
                     }
                 }
-
-            }
-            listCountries.push(country)
+            });
         }
+    });
+    if (!countryAlreadyFound) {
+        let country = {}
+        country.code = data[1]
+        country.countryName = data[0]
+
+        country.years = {}
+        const year = data[2];
+        country.years[year] = {}
+
+
+        Object.keys(causeDictionary).forEach(resultCause => {
+
+            //This is the list of causes we are searching for:
+            const listCausesPartielles = causeDictionary[resultCause]
+            // console.log(resultCause + " " + listCausesPartielles);
+
+            //We look for the elements inside the list and sum their pourcentages:
+
+            //we initialize the mainCause num with 0
+            country.years[year][resultCause] = 0
+            for (let headerCode = 3; headerCode < headers.length; headerCode++) {
+                for (let causeCode = 0; causeCode < listCausesPartielles.length; causeCode++) {
+                    if (headers[headerCode] === listCausesPartielles[causeCode]) {
+                        country.years[year][resultCause] += parseFloat(data[headerCode]);
+                    }
+                }
+            }
+        });
+        listCountries.push(country)
+    }
     }
     return listCountries;
 }

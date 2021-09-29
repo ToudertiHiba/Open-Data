@@ -76,18 +76,21 @@ const Slider = (props) => {
                 </h1>
             </div>
             <div>
+                <div style={{ display: "inline-block", margin: 20 }}>
                 <Button
-                    style={{ width: 40, borderRadius: "50%", display: "inline-block", margin: 10 }}
+                    style={{ width: 100, height: 100, borderRadius: "50%", display: "inline-block" }}
                     togglable={"true"}
                     onClick={() => setPlay(!play)}>
                     {play ? (
-                        <FontAwesomeIcon icon={faPause} />
+                        <FontAwesomeIcon icon={faPause} size="3x" />
                     ) : (
-                        <FontAwesomeIcon icon={faPlay} />
+                        <FontAwesomeIcon icon={faPlay} size="3x"/>
                     )}
                 </Button>
+                </div>
+                <div style={{ display: "inline-block", width: window.innerWidth - 160, }}>
                 <RangeSlider
-                    style={{ display: "inline-block", margin: 10 }}
+                    style={{  paddingTop: 30 }}
                     value={parseInt(fullData[Math.min(yearId, years.length - 1)].name)}
                     min={parseInt(fullData[0].name)}
                     max={parseInt(fullData[years.length - 1].name)}
@@ -105,6 +108,7 @@ const Slider = (props) => {
                         }
                     }
                 />
+                </div>
             </div>
 
         </div>
