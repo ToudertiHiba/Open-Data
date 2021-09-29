@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
+// import {browserHistory} from 'react-router';
 import { Map, GeoJSON } from "react-leaflet";
 //import countries from './../../Data/countries.json';
- import countries from './../../Data/countries-50m.json';
+import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/newResult.json';
 import "leaflet/dist/leaflet.css";
 import "./MyMapp.css";
-import Select from 'react-select';
 
+// import Select from 'react-select';
+import {
+    withRouter,
+} from "react-router-dom";
 
 class MyMapp extends Component {
+
     // state = {
     //     year:"1990",
     //     color:"red",
     //     causeColor: ["","","","","","","","","","",""]
     // }
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            year:"1990",
-            color:"red",
-            causeColor: ["","","","","","","","","","",""]
+            year: "1990",
+            color: "red",
+            causeColor: ["", "", "", "", "", "", "", "", "", "", ""]
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    
+
 
     componentDidMount() {
-        
+
         console.log(countries);
         console.log(ListCountry);
         // console.log(this.getPrincipalCause("AFG","1990"));
@@ -38,24 +43,24 @@ class MyMapp extends Component {
     };
 
     //cette fct donne tableau des cause pricipales (ou une cause)
-    getPrincipalCause(code,Year){
+    getPrincipalCause(code, Year) {
         let objet = {};
         let ab = ["b"]
         ListCountry.forEach(country => {
             //console.log(country.code);
             //probleme d'incoherence entre les code et ISO_A3
-            if (country.code == code) {
+            if (country.code === code) {
                 //console.log(country.years[Year]);
                 objet = country.years[Year];
                 if (objet === undefined) {
                     ab = ["a"]
                     return ab;
                 }
-                else{
-                    
+                else {
+
                     ab = Object.keys(objet).filter(x => {
-                        return objet[x] == Math.max.apply(null, 
-                        Object.values(objet));
+                        return objet[x] === Math.max.apply(null,
+                            Object.values(objet));
                     });
                     return ab;
 
@@ -63,74 +68,74 @@ class MyMapp extends Component {
                 // console.log(objet);
                 // console.log(country.code)
                 // return Object.keys(objet).filter(x => {
-                //     return objet[x] == Math.max.apply(null, 
+                //     return objet[x] === Math.max.apply(null, 
                 //     Object.values(objet));
-            //   });
+                //   });
             }
-            
+
         });
         //console.log(objet);
         return ab;
-        
+
     }
 
-    getColor(cause){
+    getColor(cause) {
 
-        let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16);
-        switch(cause){
-            case "Meningitis" : {
-                if (this.state.causeColor[0]=="") {
-                    this.state.causeColor[0]="#" + randomColor;
+        let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16);
+        switch (cause) {
+            case "Meningitis": {
+                if (this.state.causeColor[0] === "") {
+                    this.state.causeColor[0] = "#" + randomColor;
                 }
             } return this.state.causeColor[0];
-            case "Lower respiratory infections" : {
-                if (this.state.causeColor[1]=="") {
-                    this.state.causeColor[1]="#" + randomColor;
+            case "Lower respiratory infections": {
+                if (this.state.causeColor[1] === "") {
+                    this.state.causeColor[1] = "#" + randomColor;
                 }
             } return this.state.causeColor[1];
-            case "Intestinal infectious diseases":{
-                if (this.state.causeColor[2]=="") {
-                    this.state.causeColor[2]="#" + randomColor;
+            case "Intestinal infectious diseases": {
+                if (this.state.causeColor[2] === "") {
+                    this.state.causeColor[2] = "#" + randomColor;
                 }
             } return this.state.causeColor[2];
             case "Protein-energy malnutrition": {
-                if (this.state.causeColor[3]=="") {
-                    this.state.causeColor[3]="#" + randomColor;
+                if (this.state.causeColor[3] === "") {
+                    this.state.causeColor[3] = "#" + randomColor;
                 }
             } return this.state.causeColor[3];
             case "Terrorism": {
-                if (this.state.causeColor[4]=="") {
-                    this.state.causeColor[4]="#" + randomColor;
+                if (this.state.causeColor[4] === "") {
+                    this.state.causeColor[4] = "#" + randomColor;
                 }
             } return this.state.causeColor[4];
             case "Cardiovascular diseases": {
-                if (this.state.causeColor[5]=="") {
-                    this.state.causeColor[5]="#" + randomColor;
+                if (this.state.causeColor[5] === "") {
+                    this.state.causeColor[5] = "#" + randomColor;
                 }
             } return this.state.causeColor[5];
             case "Alzheimer disease and other dementias": {
-                if (this.state.causeColor[6]=="") {
-                    this.state.causeColor[6]="#" + randomColor;
+                if (this.state.causeColor[6] === "") {
+                    this.state.causeColor[6] = "#" + randomColor;
                 }
             } return this.state.causeColor[6];
             case "Chronic kidney disease": {
-                if (this.state.causeColor[7]=="") {
-                    this.state.causeColor[7]="#" + randomColor;
+                if (this.state.causeColor[7] === "") {
+                    this.state.causeColor[7] = "#" + randomColor;
                 }
             } return this.state.causeColor[7];
             case "Chronic respiratory diseases": {
-                if (this.state.causeColor[8]=="") {
-                    this.state.causeColor[8]="#" + randomColor;
+                if (this.state.causeColor[8] === "") {
+                    this.state.causeColor[8] = "#" + randomColor;
                 }
             } return this.state.causeColor[8];
             case "Malaria": {
-                if (this.state.causeColor[9]=="") {
-                    this.state.causeColor[9]="#" + randomColor;
+                if (this.state.causeColor[9] === "") {
+                    this.state.causeColor[9] = "#" + randomColor;
                 }
             } return this.state.causeColor[9];
             case "Alcohol use disorders": {
-                if (this.state.causeColor[10]=="") {
-                    this.state.causeColor[10]="#" + randomColor;
+                if (this.state.causeColor[10] === "") {
+                    this.state.causeColor[10] = "#" + randomColor;
                 }
             } return this.state.causeColor[10];
             default: return "red";
@@ -143,37 +148,42 @@ class MyMapp extends Component {
         //getPrincipalCause("AFG","1990")[0]
         //console.log(this.state.color)
         //console.log(feature.properties.ISO_A3);
-        
+
         //console.log(this.getPrincipalCause(feature.properties.ISO_A3,"2000"));
         //let cause = this.getPrincipalCause("-99","2000")[0];
         // let cause = this.getPrincipalCause(feature.properties.ISO_A3,this.state.year)[0];
-        let cause = this.getPrincipalCause(feature.id,this.state.year)[0];
+        let cause = this.getPrincipalCause(feature.id, this.state.year)[0];
         //console.log(cause)
         // console.log(this.getColor(cause))
         // console.log(this.state.causeColor)
         return {
             fillColor: this.getColor(cause), //la ou il faut mettre getColor getColor(getPrincipalCause(feature.properties.ISO_A3,year))
-            weight:2,
-            opacity:1,
+            weight: 2,
+            opacity: 1,
             color: 'white',
-            dashArray:'3',
+            dashArray: '3',
             fillOpacity: 0.2
         }
     };
 
-    resetStyle(code,year){
-        const cause = this.getPrincipalCause(code,year)[0];
+    resetStyle(code, year) {
+        const cause = this.getPrincipalCause(code, year)[0];
         return {
             fillColor: this.getColor(cause), //la ou il faut mettre getColor getColor(getPrincipalCause(feature.properties.ISO_A3,year))
-            weight:2,
-            opacity:1,
+            weight: 2,
+            opacity: 1,
             color: 'white',
-            dashArray:'3',
+            dashArray: '3',
             fillOpacity: 0.2
         }
     }
 
-    onEachCountry = (country,layer) =>{
+    pushToRoute = route => {
+        this.props.history.push(route)
+
+    }
+
+    onEachCountry = (country, layer) => {
         const countryName = country.properties.ADMIN;
         //console.log(countryName);
         layer.bindPopup(countryName);
@@ -182,26 +192,31 @@ class MyMapp extends Component {
         //layer.options.fillOpacity = Math.random(); // valeur [0-1]
 
         layer.on({
-            click:(event)=>{
+            click: (event) => {
                 event.target.setStyle({
                     //on change la couleur du pays 
-                    color:"green",
-                    fillColor:"yellow",
+                    color: "green",
+                    fillColor: "yellow",
                 });
-                
+
+                const countryCode = event.target.feature.id
+                this.pushToRoute({
+                    pathname: '/country/' + countryCode,
+                    state: { countryCode: countryCode }
+                })
 
             },
-            mouseover:(event)=>{
+            mouseover: (event) => {
                 event.target.setStyle({
                     weight: 5,
                     color: '#666',
                     dashArray: '',
-                    fillOpacity: 0.7                    
+                    fillOpacity: 0.7
                 });
-                
+
             },
-            mouseout:(event)=>{
-                event.target.setStyle(this.resetStyle(country.id,this.state.year));
+            mouseout: (event) => {
+                event.target.setStyle(this.resetStyle(country.id, this.state.year));
                 //this.refs.geojson.leafletElement.resetStyle(event.target);
             }
         })
@@ -210,35 +225,35 @@ class MyMapp extends Component {
 
     options = [
         {
-          label: "1990",
-          value: "1990",
+            label: "1990",
+            value: "1990",
         },
         {
-          label: "2000",
-          value: "2000",
+            label: "2000",
+            value: "2000",
         },
         {
-          label: "2002",
-          value: "2002",
+            label: "2002",
+            value: "2002",
         },
         {
-          label: "2007",
-          value: "2007",
+            label: "2007",
+            value: "2007",
         },
-      ];
+    ];
 
-      handleChange(e) {
-          console.log(e.target.value);
-          this.state.year = e.target.value;
-          console.log(this.state.year)
-          this.state.causeColor= ["","","","","","","","","","",""];
-          ListCountry.forEach((country)=>{
-              this.countryStyle=this.resetStyle(country.code,this.state.year);
-          })
-          
-      }
+    handleChange(e) {
+        console.log(e.target.value);
+        this.state.year = e.target.value;
+        console.log(this.state.year)
+        this.state.causeColor = ["", "", "", "", "", "", "", "", "", "", ""];
+        ListCountry.forEach((country) => {
+            this.countryStyle = this.resetStyle(country.code, this.state.year);
+        })
 
-    
+    }
+
+
 
 
 
@@ -248,7 +263,7 @@ class MyMapp extends Component {
                 <h1 style={{ textAlign: "center" }}>
                     My Map
                 </h1>
-                <div className="map" style={{marginRight:"5cm",marginLeft:"25cm"}}>
+                <div className="map" style={{ marginRight: "5cm", marginLeft: "25cm" }}>
                     <div>
                         <select value={this.state.year} onChange={this.handleChange}>
                             {this.options.map((option) => (
@@ -256,7 +271,7 @@ class MyMapp extends Component {
                             ))}
                         </select>
                     </div>
-                    <Map ref="geojson" style={{ height: "80vh",width:"80vh" }} zoom={2} center={[10,10,10]} maxZoom={15} minZoom={2} >
+                    <Map ref="geojson" style={{ height: "80vh", width: "80vh" }} zoom={2} center={[10, 10, 10]} maxZoom={15} minZoom={2} >
                         <GeoJSON style={this.countryStyle} data={countries.features} onEachFeature={this.onEachCountry} ></GeoJSON>
                     </Map>
                 </div>
@@ -265,4 +280,4 @@ class MyMapp extends Component {
     }
 }
 
-export default MyMapp;
+export default withRouter(MyMapp);

@@ -53,13 +53,13 @@ const Slider = (props) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (yearId < years.length && play) {
-                if (yearId === years.length - 1){
+                if (yearId === years.length - 1) {
                     setPlay(false)
                 }
-                else{
+                else {
                     setYearId(parseInt(yearId) + 1)
                 }
-                
+
 
                 // setData(fullData[yearId].value);
             }
@@ -72,18 +72,24 @@ const Slider = (props) => {
 
     return (
         <div>
-            <div style={{ margin: 100 }}>
-                <div>{'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}</div>
-                <Button togglable={"true"} onClick={() => setPlay(!play)}>
+            <div>
+                <h1 style={{ textAlign: "center" }}>
+                    {'Year: ' + fullData[Math.min(yearId, years.length - 1)].name}
+                </h1>
+            </div>
+            <div>
+                <Button
+                    style={{ width: 40, borderRadius: "50%", display: "inline-block", margin: 10 }}
+                    togglable={"true"}
+                    onClick={() => setPlay(!play)}>
                     {play ? (
-
                         <FontAwesomeIcon icon={faPause} />
                     ) : (
-
                         <FontAwesomeIcon icon={faPlay} />
                     )}
                 </Button>
                 <RangeSlider
+                    style={{ display: "inline-block", margin: 10 }}
                     value={parseInt(fullData[Math.min(yearId, years.length - 1)].name)}
                     min={parseInt(fullData[0].name)}
                     max={parseInt(fullData[years.length - 1].name)}

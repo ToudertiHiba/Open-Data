@@ -1,5 +1,11 @@
 const fs = require("fs-extra");
-
+const listCauses = [
+    "Meningitis",
+    "Lower respiratory infections",
+    "Cardiovascular diseases",
+    "Drug use disorders",
+    "Self-harm"
+]
 function devideHeaders(str) {
     var start_index = 0;
     var parts = [];
@@ -25,15 +31,8 @@ function devideHeaders(str) {
 function processDatatoJSON(allText) {
     let allLines = allText.split(/\r\n|\n/);
     let headers = devideHeaders(allLines[0]);
-    // headers.forEach(element => {
-    //     console.log(element)
-    // });
-    const headersMap = {};
-    for (let headerCode = 0; headerCode < headers.length; headerCode++) {
-        headersMap[headerCode] = headers[headerCode];
-    }
+
     const listCountries = [];
-    // console.log(headersMap);
     for (let line = 1; line < allLines.length; line++) {
         const data = allLines[line].split(',');
         let countryAlreadyFound = false;
@@ -44,8 +43,14 @@ function processDatatoJSON(allText) {
                 const year = data[2];
                 object.years[year] = {}
 
-                for (let headerCode = 3; headerCode < data.length; headerCode++) {
-                    object.years[year][headers[headerCode]] = data[headerCode];
+                for (let headerCode = 3; headerCode < headers.length; headerCode++) {
+                    for (let causeCode = 0; causeCode < listCauses.length; causeCode++) {
+
+                        if (headers[headerCode] === listCauses[causeCode]) {
+                            object.years[year][headers[headerCode]] = data[headerCode];
+                        }
+                    }
+
                 }
             }
         });
@@ -58,18 +63,17 @@ function processDatatoJSON(allText) {
             const year = data[2];
             country.years[year] = {}
 
-            for (let headerCode = 3; headerCode < data.length; headerCode++) {
-                country.years[year][headers[headerCode]] = data[headerCode];
+            for (let headerCode = 3; headerCode < headers.length; headerCode++) {
+                for (let causeCode = 0; causeCode < listCauses.length; causeCode++) {
+
+                    if (headers[headerCode] === listCauses[causeCode]) {
+                        country.years[year][headers[headerCode]] = data[headerCode];
+                    }
+                }
+
             }
             listCountries.push(country)
         }
-        // if (!country[code]) {
-        //     country[code] = { countryName };
-        //     country[code]["year"] = {};
-        // }
-        // country[code]["year"][year] = {};
-
-
     }
     return listCountries;
 }
@@ -79,12 +83,8 @@ function main() {
     const txtFile = fs.readFileSync("./annualNumberOfDeathsByCause.csv").toString();
     const d1 = new Date();
     const countries = processDatatoJSON(txtFile);
-    // console.log(countries);
     const d2 = new Date();
-    // console.log(d1);
-    // console.log(d2);
-    // console.log(d2 - d1);
-    fs.writeJSON("newResult.json", countries);
+    fs.writeJSON("SpecificCauses.json", countries);
 }
 
 main();
