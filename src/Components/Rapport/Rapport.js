@@ -34,12 +34,19 @@ const Rapport = () => {
                     TODO
                 </p>
 
-                <h4 class="marginT">Technologies </h4>
+                <h4 class="marginT">Technologies</h4>
                 <p class="pJustify">
-                    TODO
+                    L'application a été réalisée en <span class="bold">React</span>.<br />
+                    Les principales bibliothèques utilisées sont les suivantes :<br />
+                    &bull; <span class="bold">LeafLet</span> (pour la carte du monde)<br />
+                    &bull; <span class="bold">ReactModal</span> (pour les fenêtres type "modale")<br />
+                    &bull; <span class="bold">ReactDataTableComponent</span> (pour la liste des causes)<br />
+                    &bull; <span class="bold">ReactBootstrap</span> (pour certains styles de bouton)<br />
+                    &bull; <span class="bold">FontAwesome</span> (pour les icônes)<br />
+                    &bull; <span class="bold">React-ChartJS-2</span> (pour les graphiques en barres horizontales)
                 </p>
 
-                <h4 class="marginT">Résultat GreenIT Analysis </h4>
+                <h4 class="marginT">Résultat GreenIT Analysis</h4>
                 <p class="pJustify">
                     TODO
                 </p>
