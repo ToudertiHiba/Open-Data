@@ -152,12 +152,7 @@ const MyMapBackup = (props) => {
         });
         //console.log(objet);
         return ab;
-
     }
-
-
-
-
 
     // là il faut passer un parametre à la fct, afin de recuperer la cause 
     let countryStyle = (feature) => {
@@ -187,7 +182,6 @@ const MyMapBackup = (props) => {
     //     }
     // }
 
-
     //model 1 pour les cause 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
@@ -208,7 +202,6 @@ const MyMapBackup = (props) => {
     }
     const [countryCode, setcountryCode] = useState("");
     const [causeName, setCauseName] = useState("");
-
 
     const pushToRoute = route => {
         props.history.push(route)
@@ -258,7 +251,6 @@ const MyMapBackup = (props) => {
         })
     }
 
-
     return (
         <div className="grid-container">
 
@@ -290,7 +282,6 @@ const MyMapBackup = (props) => {
                 )}
             </div>
             <div className="listCause"  >
-
                 <div style={{ margin: 20, boxShadow: 50 }}>
                     <DataTable
                         title="Liste des Causes"
@@ -305,7 +296,6 @@ const MyMapBackup = (props) => {
                         }
                     />
                 </div>
-
 
             </div>
             <div className="slider" >
@@ -354,7 +344,6 @@ const MyMapBackup = (props) => {
             </div> */}
         </div>
     )
-
 }
 
 export default withRouter(MyMapBackup);

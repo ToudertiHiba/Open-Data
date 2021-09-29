@@ -13,12 +13,12 @@ import {
 } from "react-router-dom";
 
 class MyMapp extends Component {
-
     // state = {
     //     year:"1990",
     //     color:"red",
     //     causeColor: ["","","","","","","","","","",""]
     // }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -29,17 +29,14 @@ class MyMapp extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
-
     componentDidMount() {
-
-        console.log(countries);
-        console.log(ListCountry);
+        //console.log(countries);
+        //console.log(ListCountry);
         // console.log(this.getPrincipalCause("AFG","1990"));
         // console.log(this.getColor("Meningitis"));
         // this.state.color=this.getColor("Meningitis");
         // console.log(this.state.color)
-        console.log(this.state.causeColor)
+        //console.log(this.state.causeColor)
     };
 
     //cette fct donne tableau des cause pricipales (ou une cause)
@@ -80,7 +77,6 @@ class MyMapp extends Component {
     }
 
     getColor(cause) {
-
         let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16);
         switch (cause) {
             case "Meningitis": {
@@ -141,7 +137,6 @@ class MyMapp extends Component {
             default: return "red";
         }
     }
-
 
     // là il faut passer un parametre à la fct, afin de recuperer la cause 
     countryStyle = (feature) => {
@@ -243,19 +238,15 @@ class MyMapp extends Component {
     ];
 
     handleChange(e) {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         this.state.year = e.target.value;
-        console.log(this.state.year)
+        //console.log(this.state.year)
         this.state.causeColor = ["", "", "", "", "", "", "", "", "", "", ""];
         ListCountry.forEach((country) => {
             this.countryStyle = this.resetStyle(country.code, this.state.year);
         })
 
     }
-
-
-
-
 
     render() {
         return (

@@ -71,10 +71,4 @@ const AnimatableBarChart = (props) => {
     );
 }
 
-
-
-
-
-
 export default AnimatableBarChart
-

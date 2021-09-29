@@ -66,8 +66,6 @@ class CountryMap extends Component {
 
     }
 
-
-
     render() {
         return (
             <div>

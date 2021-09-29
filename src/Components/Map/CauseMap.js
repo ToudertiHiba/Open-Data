@@ -65,7 +65,6 @@ const CauseMap = (props) => {
                                     '#FFEDA0';
     }
 
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (yearId < years.length && play) {
@@ -85,7 +84,6 @@ const CauseMap = (props) => {
             clearInterval(interval);
         };
     });
-
 
     const getTotalDeaths = (cause, year) => {
         let totalDeaths = 0
@@ -115,7 +113,6 @@ const CauseMap = (props) => {
         });
         return pourc;
     }
-
 
     // là il faut passer un parametre à la fct, afin de recuperer la cause 
     let countryStyle = (feature) => {
@@ -181,7 +178,6 @@ const CauseMap = (props) => {
 
         });
     }
-
 
     return (
         <div>
@@ -263,7 +259,6 @@ const CauseMap = (props) => {
             </div>
         </div>
     )
-
 }
 
 export default withRouter(CauseMap);
