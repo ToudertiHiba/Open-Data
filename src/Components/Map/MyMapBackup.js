@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import RangeSlider from 'react-bootstrap-range-slider';
 import { withRouter } from "react-router-dom";
-import DataTable from "react-data-table-component"
+import DataTable from "react-data-table-component";
+import ReactModal from 'react-modal';
 
 import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/SpecificCauses.json';
@@ -65,12 +66,12 @@ const MyMapBackup = (props) => {
     }
 
 
-    const causeClicked = (cause) => {
-        pushToRoute({
-            pathname: '/causes/' + cause,
-            state: { cause: cause }
-        })
-    }
+    // const causeClicked = (cause) => {
+    //     pushToRoute({
+    //         pathname: '/causes/' + cause,
+    //         state: { cause: cause }
+    //     })
+    // }
 
     const tableCauseColumns = [
         {
@@ -174,6 +175,17 @@ const MyMapBackup = (props) => {
     //         fillOpacity: 0.2
     //     }
     // }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+      setIsOpen(true);
+    }
+  
+    function closeModal() {
+      setIsOpen(false);
+    }
+    
     const pushToRoute = route => {
         props.history.push(route)
     }
@@ -198,6 +210,7 @@ const MyMapBackup = (props) => {
                     pathname: '/country/' + countryCode,
                     state: { countryCode: event.target.feature.id }
                 })
+                
             },
             mouseover: (event) => {
                 event.target.setStyle({
@@ -223,14 +236,27 @@ const MyMapBackup = (props) => {
 
     return (
         <div className="grid-container">
+
+
             <div className="NavBar">
                 <NavBar></NavBar>
             </div>
-
+            
             <div className="map">
-                <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
-                    <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
-                </Map>
+                {modalIsOpen ? (
+                    <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} contentLabel="exemple">
+                        <div>
+                            <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
+                                <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
+                            </Map>
+                            <button onClick={closeModal}>close</button>
+                        </div>
+                    </ReactModal>
+                ):(
+                    <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
+                        <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
+                    </Map>
+                )}
             </div>
             <div className="listCause"  >
 
@@ -242,11 +268,13 @@ const MyMapBackup = (props) => {
                         defaultSortField="title"
                         onRowClicked={
                             clickEvent => {
-                                causeClicked(clickEvent.cause);
+                                openModal();
                             }
                         }
                     />
                 </div>
+                
+ 
             </div>
             <div className="slider" >
                 <div style={{ display: "inline-block", margin: 0 }}>
