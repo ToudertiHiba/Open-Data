@@ -34,3 +34,6 @@ nav {
 .closeBtn {
     float: right;
 }
+.itemRapport:hover {
+    cursor: pointer;
+}

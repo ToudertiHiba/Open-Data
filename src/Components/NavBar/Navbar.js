@@ -30,7 +30,7 @@ const Navbar = () => {
         <ul className="liste">
           <h3 className="titre" >Challenge Open Data</h3>
           <ul className="list">
-            <li className="items" onClick={openModal}>Rapport</li>
+            <li className="items itemRapport" onClick={openModal}>Rapport</li>
           </ul>
         </ul>
       </nav>
