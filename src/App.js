@@ -23,6 +23,11 @@ const App = () => {
         <Route path="/play">
           <Play />
         </Route>
+
+        <Route path="/causes/:cause" render={({ match }) => (
+          <Play />
+        )} />
+
         <Route path="/">
           <MyMapBackup />
         </Route>

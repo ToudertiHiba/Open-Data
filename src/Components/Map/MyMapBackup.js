@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import RangeSlider from 'react-bootstrap-range-slider';
 import { withRouter } from "react-router-dom";
+import DataTable from "react-data-table-component"
 
 import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/SpecificCauses.json';
@@ -55,6 +56,41 @@ const MyMapBackup = (props) => {
         return noDataColor;
     }
 
+    const colorDictionary = () => {
+
+        let data = []
+        for (let i = 0; i < causeList.length; i++) {
+
+            let dataLine = {}
+            dataLine.cause = causeList[i]
+            dataLine.couleur = <div style={{ backgroundColor: getColor(dataLine.cause), height: 30, width: 30, borderWidth: 1, borderColor: "#000", borderRadius: 5, borderStyle: "solid" }}></div>
+            data.push(dataLine)
+        }
+
+        console.log(data)
+        return data
+    }
+
+
+    const causeClicked = (cause) => {
+        pushToRoute({
+            pathname: '/causes/' + cause,
+            state: { cause: cause }
+        })
+    }
+
+    const tableCauseColumns = [
+        {
+            name: "cause",
+            selector: "cause",
+            sortable: false
+        },
+        {
+            name: "couleur",
+            selector: "couleur",
+            sortable: false
+        }
+    ];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -197,17 +233,30 @@ const MyMapBackup = (props) => {
             <div className="NavBar">
                 <NavBar></NavBar>
             </div>
-            
+
             <div className="map">
                 <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
                     <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                 </Map>
             </div>
-            <div className="listCause">
-                LiseCause
+            <div className="listCause"  >
+                
+                <div style={{ margin: 20, boxShadow: 50}}>
+                    <DataTable
+                        title="Liste des Causes"
+                        columns={tableCauseColumns}
+                        data={colorDictionary()}
+                        defaultSortField="title"
+                        onRowClicked={
+                            clickEvent => {
+                                causeClicked(clickEvent.cause);
+                            }
+                        }
+                    />
+                </div>
             </div>
             <div className="slider" >
-                    <div style={{ display: "inline-block", margin: 0 }}>
+                <div style={{ display: "inline-block", margin: 0 }}>
                     <Button
                         style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }}
                         togglable={"true"}
@@ -218,11 +267,11 @@ const MyMapBackup = (props) => {
                             <FontAwesomeIcon icon={faPlay} size="2x" />
                         )}
                     </Button>
-                    </div>
+                </div>
 
-                    <div style={{ display: "inline-block", width: window.innerWidth - 200, }}>
+                <div style={{ display: "inline-block", width: window.innerWidth - 200, }}>
                     <RangeSlider
-                        style={{  paddingTop: 30 }}
+                        style={{ paddingTop: 30 }}
                         value={parseInt(years[yearId])}
                         min={parseInt(years[0])}
                         max={parseInt(years[years.length - 1])}
@@ -243,7 +292,7 @@ const MyMapBackup = (props) => {
                             }
                         }
                     />
-                    </div>
+                </div>
             </div>
             {/* <div className="footer">
                 <h1 style={{ textAlign: "center" }}>
