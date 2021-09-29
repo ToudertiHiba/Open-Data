@@ -7,7 +7,7 @@ import RangeSlider from 'react-bootstrap-range-slider';
 import { withRouter } from "react-router-dom";
 
 import countries from './../../Data/countries-50m.json';
-import ListCountry from './../../Data/newResult.json';
+import ListCountry from './../../Data/SpecificCauses.json';
 
 import "./MyMapp.css";
 import "leaflet/dist/leaflet.css";
@@ -24,20 +24,18 @@ const MyMapBackup = (props) => {
     ]
     const [play, setPlay] = useState(true)
     const causeList = [
-        "Meningitis",
-        "Lower respiratory infections",
-        "Intestinal infectious diseases",
-        "Protein-energy malnutrition",
-        "Terrorism",
-        "Cardiovascular diseases",
-        "Alzheimer disease and other dementias",
-        "Chronic kidney disease",
-        "Chronic respiratory diseases",
-        "Malaria",
-        "Alcohol use disorders"]
+        "Maladies cardiovasculaires",
+        "Cancer",
 
+        "Utilisation d'alcool et de drogues",
+        "Suicide",
+
+        "Déficiences nutritionnelles",
+        "Maladies respiratoires",
+
+        "Accidents de route"]
     const [causeColor, setCauseColor] = useState(
-        Array.from(Array(11))
+        Array.from(Array(causeList.length))
             .map(x =>
                 "#" + (Math.floor(Math.random() * 0xFFFFFF))
                     .toString(16)

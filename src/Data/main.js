@@ -1,18 +1,5 @@
 const fs = require("fs-extra");
-// const listCauses = [
-//     "Cardiovascular diseases",
-//     "Neoplasms",
 
-//     "Drug use disorders",
-//     "Alcohol use disorders",
-//     "Self-harm",
-
-//     "Nutritional deficiencies",
-//     "Lower respiratory infections",
-//     "Chronic respiratory diseases",
-
-//     "Road injuries",
-// ]
 const causeDictionary = {
     "Maladies cardiovasculaires": ["Cardiovascular diseases"],
     "Cancer": ["Neoplasms"],
