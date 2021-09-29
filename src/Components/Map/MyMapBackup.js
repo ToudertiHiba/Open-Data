@@ -36,14 +36,7 @@ const MyMapBackup = (props) => {
         "Maladies respiratoires",
 
         "Accidents de route"]
-    const [causeColor, setCauseColor] = useState(
-        Array.from(Array(causeList.length))
-            .map(x =>
-                "#" + (Math.floor(Math.random() * 0xFFFFFF))
-                    .toString(16)
-            )
-    )
-
+    const causeColor = ["#e6194B", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4"]
     // console.log(causeColor)
     const noDataColor = "red"
 
@@ -240,8 +233,8 @@ const MyMapBackup = (props) => {
                 </Map>
             </div>
             <div className="listCause"  >
-                
-                <div style={{ margin: 20, boxShadow: 50}}>
+
+                <div style={{ margin: 20, boxShadow: 50 }}>
                     <DataTable
                         title="Liste des Causes"
                         columns={tableCauseColumns}
