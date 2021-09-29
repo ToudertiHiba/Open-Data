@@ -18,6 +18,10 @@ const MyMapBackup = (props) => {
     const years = Object.keys(ListCountry[0].years)
     const [yearId, setYearId] = useState(0)
 
+    const mapBounds = [
+        [89, 179],
+        [-89, -179]
+    ]
     const [play, setPlay] = useState(true)
     const causeList = [
         "Meningitis",
@@ -40,8 +44,8 @@ const MyMapBackup = (props) => {
             )
     )
 
-    console.log(causeColor)
-    const red = "red"
+    // console.log(causeColor)
+    const noDataColor = "red"
 
     const getColor = (cause) => {
         for (let i = 0; i < causeList.length; i++) {
@@ -49,7 +53,7 @@ const MyMapBackup = (props) => {
                 return causeColor[i];
             }
         }
-        return red;
+        return noDataColor;
     }
 
 
@@ -58,18 +62,13 @@ const MyMapBackup = (props) => {
             if (yearId < years.length && play) {
                 if (yearId === years.length - 1) {
                     setPlay(false)
-                    countries.features.forEach(element => {
-
-                        countryStyle(element)
-                    });
                 }
                 else {
                     setYearId(parseInt(yearId) + 1)
-                    countries.features.forEach(element => {
-
-                        countryStyle(element)
-                    });
                 }
+                countries.features.forEach(element => {
+                    countryStyle(element)
+                });
             }
         }, 1000);
 
@@ -147,10 +146,8 @@ const MyMapBackup = (props) => {
             fillOpacity: 0.2
         }
     }
-
     const pushToRoute = route => {
         props.history.push(route)
-
     }
 
     const onEachCountry = (country, layer) => {
@@ -163,17 +160,16 @@ const MyMapBackup = (props) => {
 
         layer.on({
             click: (event) => {
-                event.target.setStyle({
-                    //on change la couleur du pays 
-                    color: "green",
-                    fillColor: "yellow",
-                });
+                // event.target.setStyle({
+                //     //on change la couleur du pays 
+                //     color: "green",
+                //     fillColor: "yellow",
+                // });
                 const countryCode = event.target.feature.id
                 pushToRoute({
                     pathname: '/country/' + countryCode,
                     state: { countryCode: event.target.feature.id }
                 })
-
             },
             mouseover: (event) => {
                 event.target.setStyle({
@@ -182,14 +178,12 @@ const MyMapBackup = (props) => {
                     dashArray: '',
                     fillOpacity: 0.7
                 });
-
             },
             mouseout: (event) => {
                 event.target.setStyle(resetStyle(country.id, years[yearId]));
                 //refs.geojson.leafletElement.resetStyle(event.target);
             }
         })
-
     }
 
 
@@ -204,18 +198,15 @@ const MyMapBackup = (props) => {
                 </h1>
             </div>
             <div className="map" style={{ marginRight: "5cm", marginLeft: "25cm" }}>
-
-                <Map style={{ height: "80vh", width: "80vh" }} zoom={2} center={[10, 10, 10]} maxZoom={15} minZoom={2} >
+                <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
                     <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                 </Map>
             </div>
             <div style={{ margin: 100 }}>
                 <Button togglable={"true"} onClick={() => setPlay(!play)}>
                     {play ? (
-
                         <FontAwesomeIcon icon={faPause} />
                     ) : (
-
                         <FontAwesomeIcon icon={faPlay} />
                     )}
                 </Button>
@@ -233,6 +224,9 @@ const MyMapBackup = (props) => {
                                 return 0
                             }
                             setYearId(getCurrentYearId())
+                            countries.features.forEach(element => {
+                                countryStyle(element)
+                            });
                             setPlay(false)
                         }
                     }

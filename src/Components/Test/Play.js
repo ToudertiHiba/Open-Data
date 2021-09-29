@@ -59,8 +59,6 @@ const Slider = (props) => {
                 else {
                     setYearId(parseInt(yearId) + 1)
                 }
-
-
                 // setData(fullData[yearId].value);
             }
         }, 1000);

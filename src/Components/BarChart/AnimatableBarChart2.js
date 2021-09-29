@@ -56,13 +56,13 @@ const Slider = (props) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (yearId < years.length && play) {
-                if (yearId === years.length - 1){
+                if (yearId === years.length - 1) {
                     setPlay(false)
                 }
-                else{
+                else {
                     setYearId(parseInt(yearId) + 1)
                 }
-                
+
 
                 setData(fullData[yearId].value);
             }
@@ -76,7 +76,7 @@ const Slider = (props) => {
     return (
         <div>
             <div>
-                 <ChartRace
+                <ChartRace
                     data={data}
                     padding={12}
                     itemHeight={58}
@@ -110,6 +110,7 @@ const Slider = (props) => {
                                 return 0
                             }
                             setYearId(getCurrentYearId())
+                            setData(fullData[yearId].value);
                             setPlay(false)
                         }
                     }

@@ -3,7 +3,7 @@ import React from 'react';
 // import MyMapp from './Components/Map/MyMapp';
 import MyMapBackup from './Components/Map/MyMapBackup';
 import AnimatableBarChart2 from "./Components/BarChart/AnimatableBarChart2"
-import Play from './Components/BarChart/Play';
+// import Play from './Components/Test/Play';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,9 +20,9 @@ const App = () => {
           <AnimatableBarChart2 countryCode={match.params.id} />
         )} />
 
-        <Route path="/play">
+        {/* <Route path="/play">
           <Play />
-        </Route>
+        </Route> */}
         <Route path="/">
           <MyMapBackup />
         </Route>
