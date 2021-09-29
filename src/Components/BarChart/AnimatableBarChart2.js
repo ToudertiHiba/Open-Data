@@ -10,7 +10,7 @@ import RangeSlider from 'react-bootstrap-range-slider';
 
 const Slider = (props) => {
     const countryCode = props.countryCode;
-    console.log(countryCode);
+    //console.log(countryCode);
     const findCountryInfo = (countryCode) => {
         let searchedCountry = undefined
         JSONdata.forEach(country => {
