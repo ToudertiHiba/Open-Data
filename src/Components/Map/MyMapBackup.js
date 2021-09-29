@@ -11,6 +11,7 @@ import ReactModal from 'react-modal';
 import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/SpecificCauses.json';
 import NavBar from './../NavBar/Navbar'
+import AnimatableBarChart2 from '../BarChart/AnimatableBarChart2'
 
 import "./grid-container.css";
 import "leaflet/dist/leaflet.css";
@@ -176,8 +177,9 @@ const MyMapBackup = (props) => {
     //     }
     // }
 
-    const [modalIsOpen, setIsOpen] = React.useState(false);
 
+//model 1 pour les cause 
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
       setIsOpen(true);
     }
@@ -185,6 +187,16 @@ const MyMapBackup = (props) => {
     function closeModal() {
       setIsOpen(false);
     }
+// model 2 pour les pays 
+    const [modalIsOpen2, setIsOpen2] = React.useState(false);
+    function openModal2() {
+        setIsOpen2(true);
+      }
+    
+      function closeModal2() {
+        setIsOpen2(false);
+      }
+    const [countryCode,setcountryCode]  = useState("");
     
     const pushToRoute = route => {
         props.history.push(route)
@@ -206,11 +218,12 @@ const MyMapBackup = (props) => {
                 //     fillColor: "yellow",
                 // });
                 const countryCode = event.target.feature.id
-                pushToRoute({
-                    pathname: '/country/' + countryCode,
-                    state: { countryCode: event.target.feature.id }
-                })
-                
+                // pushToRoute({
+                //     pathname: '/country/' + countryCode,
+                //     state: { countryCode: event.target.feature.id }
+                // })
+                setcountryCode(countryCode);
+                openModal2();
             },
             mouseover: (event) => {
                 event.target.setStyle({
@@ -238,6 +251,7 @@ const MyMapBackup = (props) => {
         <div className="grid-container">
 
 
+
             <div className="NavBar">
                 <NavBar></NavBar>
             </div>
@@ -250,6 +264,13 @@ const MyMapBackup = (props) => {
                                 <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                             </Map>
                             <button onClick={closeModal}>close</button>
+                        </div>
+                    </ReactModal>
+                ): modalIsOpen2 ?(
+                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} contentLabel="exemple">
+                        <div>
+                            <AnimatableBarChart2 countryCode={countryCode}></AnimatableBarChart2>
+                            <button onClick={closeModal2}>close</button>
                         </div>
                     </ReactModal>
                 ):(
