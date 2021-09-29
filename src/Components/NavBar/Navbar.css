@@ -1,0 +1,32 @@
+nav{
+    height: 50px;
+    background: linear-gradient(45deg, rgb(163, 163, 163),midnightblue);
+}
+.liste{
+    list-style-type: none;
+    background: linear-gradient(45deg, rgb(156, 14, 156),midnightblue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.list{
+    justify-content:center;
+    float: right;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    
+
+}
+.items{
+    margin-right: 10px;
+    color:aliceblue;
+    cursor: pointre; 
+    
+}
+.titre{
+    justify-content:left;
+    margin-right: 800px;
+    color:aliceblue;
+}

@@ -8,8 +8,9 @@ import { withRouter } from "react-router-dom";
 
 import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/SpecificCauses.json';
+import NavBar from './../NavBar/Navbar'
 
-import "./MyMapp.css";
+import "./grid-container.css";
 import "leaflet/dist/leaflet.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
@@ -192,50 +193,63 @@ const MyMapBackup = (props) => {
 
 
     return (
-        <div>
-            <h1 style={{ textAlign: "center" }}>
-                My Map
-            </h1>
-            <div>
-                <h1 style={{ textAlign: "center" }}>
-                    {'Year: ' + years[Math.min(yearId, years.length - 1)]}
-                </h1>
+        <div className="grid-container">
+            <div className="NavBar">
+                <NavBar></NavBar>
             </div>
-            <div className="map" style={{ marginRight: "5cm", marginLeft: "25cm" }}>
+            
+            <div className="map">
                 <Map style={{ height: "80vh", width: "100vh" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds} >
                     <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                 </Map>
             </div>
-            <div style={{ margin: 100 }}>
-                <Button togglable={"true"} onClick={() => setPlay(!play)}>
-                    {play ? (
-                        <FontAwesomeIcon icon={faPause} />
-                    ) : (
-                        <FontAwesomeIcon icon={faPlay} />
-                    )}
-                </Button>
-                <RangeSlider
-                    value={parseInt(years[yearId])}
-                    min={parseInt(years[0])}
-                    max={parseInt(years[years.length - 1])}
-                    onChange={
-                        changeEvent => {
-                            const getCurrentYearId = () => {
-                                for (let i = 0; i < years.length; i++) {
-                                    if (years[i] === changeEvent.target.value)
-                                        return i
-                                }
-                                return 0
-                            }
-                            setYearId(getCurrentYearId())
-                            countries.features.forEach(element => {
-                                countryStyle(element)
-                            });
-                            setPlay(false)
-                        }
-                    }
-                />
+            <div className="listCause">
+                LiseCause
             </div>
+            <div className="slider" >
+                    <div style={{ display: "inline-block", margin: 0 }}>
+                    <Button
+                        style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }}
+                        togglable={"true"}
+                        onClick={() => setPlay(!play)}>
+                        {play ? (
+                            <FontAwesomeIcon icon={faPause} size="2x" />
+                        ) : (
+                            <FontAwesomeIcon icon={faPlay} size="2x" />
+                        )}
+                    </Button>
+                    </div>
+
+                    <div style={{ display: "inline-block", width: window.innerWidth - 200, }}>
+                    <RangeSlider
+                        style={{  paddingTop: 30 }}
+                        value={parseInt(years[yearId])}
+                        min={parseInt(years[0])}
+                        max={parseInt(years[years.length - 1])}
+                        onChange={
+                            changeEvent => {
+                                const getCurrentYearId = () => {
+                                    for (let i = 0; i < years.length; i++) {
+                                        if (years[i] === changeEvent.target.value)
+                                            return i
+                                    }
+                                    return 0
+                                }
+                                setYearId(getCurrentYearId())
+                                countries.features.forEach(element => {
+                                    countryStyle(element)
+                                });
+                                setPlay(false)
+                            }
+                        }
+                    />
+                    </div>
+            </div>
+            {/* <div className="footer">
+                <h1 style={{ textAlign: "center" }}>
+                    {'Year: ' + years[Math.min(yearId, years.length - 1)]}
+                </h1>
+            </div> */}
         </div>
     )
 
