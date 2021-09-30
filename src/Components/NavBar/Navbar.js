@@ -24,11 +24,15 @@ const Navbar = () => {
     Array.from(document.getElementsByClassName("map")).forEach(e => e.style.visibility = "visible");
   }
 
+  function refresh() {
+    window.location.reload();
+  }
+
   return (
     <div>
       <nav>
         <ul className="liste">
-          <h3 className="titre" >Challenge Open Data</h3>
+          <h3 className="titre clickable" onClick={refresh}>Challenge Open Data</h3>
           <ul className="list">
             <li className="items clickable" onClick={openModal}>Rapport</li>
           </ul>
