@@ -80,7 +80,8 @@ const GlobalMap = (props) => {
         {
             name: "Couleur",
             selector: "couleur",
-            sortable: false
+            sortable: false,
+            maxWidth: "20px"
         }
     ];
 
@@ -214,7 +215,7 @@ const GlobalMap = (props) => {
                 <NavBar></NavBar>
             </div>
 
-            <div className="map">
+            <div className="map" style={{ width: "100%" }}>
                 {modalIsOpen ? (
                     <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" } }}>
                         <Button className="button1" onClick={closeModal}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
@@ -235,7 +236,7 @@ const GlobalMap = (props) => {
                     </Map>
                 )}
             </div>
-            <div className="listCause"  >
+            <div className="listCause" style={{ minWidth: "400px" }}>
                 <div style={{ margin: 20, boxShadow: 50 }}>
                     <DataTable
                         title="Causes de decès dans le monde"
