@@ -1,3 +1,4 @@
+import greenIT_results from '../../Resources/greenIT_results.png'
 import "./Rapport.css"
 const Rapport = () => {
     return (
@@ -69,9 +70,9 @@ const Rapport = () => {
                     -les cartes sont sont générés à l'aide des bibliothèques Leaflet
                 </p>
 
-                <h4 class="marginT">Résultat GreenIT Analysis </h4>
-                <p class="pJustify">
-                    TODO
+                <h4 class="margin">GreenIT Analysis</h4>
+                <p class="justify">
+                    <img src={greenIT_results} alt="Résultats GreenIT Analysis" />
                 </p>
             </div>
 

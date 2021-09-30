@@ -11,30 +11,24 @@ nav {
     position: relative;
 }
 .list {
-    justify-content:center;
+    justify-content: center;
     float: right;
     list-style-type: none;
     display: flex;
     align-items: center;
-    
-
 }
 .items {
     margin-right: 10px;
     color:aliceblue;
-    cursor: pointre; 
-    
-    
 }
 .titre {
-    justify-content:left;
+    justify-content: left;
     margin-right: 800px;
     color:aliceblue;
 }
-
 .closeBtn {
     float: right;
 }
-.itemRapport:hover {
+.clickable:hover {
     cursor: pointer;
 }

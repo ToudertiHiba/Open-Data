@@ -56,7 +56,6 @@ const MyMapBackup = (props) => {
     }
 
     const colorDictionary = () => {
-
         let data = []
         for (let i = 0; i < causeList.length; i++) {
 
