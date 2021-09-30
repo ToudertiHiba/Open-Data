@@ -72,6 +72,15 @@ const Rapport = () => {
                     &bull; <span class="bold">FontAwesome</span>, pour les icônes <br/>
                 </p>
 
+                <h4 class="margin">Interactions </h4>
+                <p class="justify">
+                    Notre application montre dans une premier temps, les principales causes de décès dans le monde par pays. <br />
+                    Nous offrons à l'utilisateur la possibilité de suivre l'évolution des principales causes dans le monde à travers le slider par année accompagné d'une animation. <br />
+                    Sur la carte principale, il est également possible de cliquer sur la position d'un pays pour afficher une fenêtre modale qui nous montre l'évolution des principales causes de mort dans le pays sélectionnés.<br />
+                    Les causes de décès que nous avons sélectionnés en légende sont également cliquable pour l'utilisateur, lui permettant de voir la part des décès dans le monde lié à la cause sélectionné.<br />
+                </p>
+
+
                 <h4 class="margin">GreenIT Analysis</h4>
                 <p class="justify">
                     <img src={greenIT_results} alt="Résultats GreenIT Analysis" /><br/>
