@@ -72,12 +72,12 @@ const GlobalMap = (props) => {
     }
     const tableCauseColumns = [
         {
-            name: "cause",
+            name: "Cause",
             selector: "cause",
             sortable: false
         },
         {
-            name: "couleur",
+            name: "Couleur",
             selector: "couleur",
             sortable: false
         }
@@ -237,7 +237,7 @@ const GlobalMap = (props) => {
             <div className="listCause"  >
                 <div style={{ margin: 20, boxShadow: 50 }}>
                     <DataTable
-                        title="Liste des Causes"
+                        title="Causes de decès"
                         columns={tableCauseColumns}
                         data={colorDictionary()}
                         defaultSortField="title"
