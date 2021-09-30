@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import RangeSlider from 'react-bootstrap-range-slider';
-import { withRouter } from "react-router-dom";
-
 import countries from './../../Data/countries-50m.json';
 import ListCountry from './../../Data/countries.json';
 
@@ -24,36 +22,6 @@ const CauseMap = (props) => {
     ]
     const [play, setPlay] = useState(true)
     
-    const causeList = [
-        "Maladies respiratoires",
-        "Maladies cardiovasculaires",
-        "Alzheimer et autres démences",
-        "Maladies hépatiques",
-        "Maladies digestives",
-        "Cancers",
-        "Utilisation d'alcool et de drogues",
-        "Accidents de route",
-        "Affections néonatales",
-        "Maladies diarrhéiques",
-        "Déficiences nutritionnelles",
-        "Suicides",
-        "Diabètes"]
-    const causeColor = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
-
-    // console.log(causeColor)
-    const noDataColor = "red"
-
-    const getColor = (cause) => {
-        for (let i = 0; i < causeList.length; i++) {
-            if (causeList[i] === cause) {
-                return causeColor[i];
-            }
-        }
-        return noDataColor;
-    }
-
-
-
     function getCauseColor(d) {
         return d > 0.1 ? '#800026' :
             d > 0.05 ? '#BD0026' :
@@ -114,14 +82,9 @@ const CauseMap = (props) => {
         return pourc;
     }
 
-    // là il faut passer un parametre à la fct, afin de recuperer la cause 
     let countryStyle = (feature) => {
-        //feature est un pays: un element de la liste features dans le fichier countries-50m
-
-        // let cause = getPrincipalCause(feature.id, years[yearId])[0];
         return {
             fillColor: getCauseColor(getPourcentage(feature.id, causeName, years[yearId])),
-            //la ou il faut mettre getColor
             weight: 2,
             opacity: 1,
             color: 'white',
@@ -151,7 +114,6 @@ const CauseMap = (props) => {
                     dashArray: '3',
                     fillOpacity: 1
                 });
-                //refs.geojson.leafletElement.resetStyle(event.target);
             }
         })
     }
@@ -200,23 +162,6 @@ const CauseMap = (props) => {
 
             </div>
 
-            {/* <div className="listCause"  >
-
-                <div style={{ margin: 20, boxShadow: 50 }}>
-                    <DataTable
-                        title="Liste des Causes"
-                        columns={tableCauseColumns}
-                        data={colorDictionary()}
-                        defaultSortField="title"
-                        onRowClicked={
-                            clickEvent => {
-                                openModal();
-                                setcauseName(clickEvent.cause)
-                            }
-                        }
-                    />
-                </div>
-            </div> */}
             <div  >
                 <div style={{marginLeft:"22cm",marginTop:"30px"}}>
                     
@@ -261,4 +206,4 @@ const CauseMap = (props) => {
     )
 }
 
-export default withRouter(CauseMap);
+export default CauseMap
