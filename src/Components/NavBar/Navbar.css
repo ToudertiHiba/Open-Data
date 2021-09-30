@@ -1,24 +1,20 @@
 nav {
-    height: 60px;
     background: linear-gradient(45deg, rgb(163, 163, 163),midnightblue);
+    height: 60px;
 }
 .liste {
-    list-style-type: none;
     background: linear-gradient(45deg, rgb(156, 14, 156),midnightblue);
     height: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     position: relative;
 }
 .list {
-    justify-content: center;
-    float: right;
     list-style-type: none;
-    display: flex;
-    align-items: center;
 }
 .items {
-    margin-right: 10px;
+    margin-right: 35px;
     color:aliceblue;
 }
 .titre {
