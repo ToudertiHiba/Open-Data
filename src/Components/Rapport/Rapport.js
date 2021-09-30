@@ -29,18 +29,18 @@ const Rapport = () => {
                     Nous avons également utilisé un fichier JSON qui contient des informations sur la géométrie de chaque pays.<br /><br />
                     <span>Observations :</span><br />
                     Nous pouvons remarquer une croissance des causes de décès lié à la santé (maladies) qui peut s'expliquer par la croissance démographique, <br />
-                    Nous pouvons également remarquer qu'il s'agit principalement d'une croissances des maladies de civilisations (lié au mode de vie). <br />
+                    Nous pouvons également remarquer qu'il s'agit principalement d'une croissance des maladies de civilisations (lié au mode de vie). <br />
                     Mais nous constatons également un déclin des causes de décès lié à la nutrition et l'hygiène.<br />
                     Nous pouvons expliquer cela par un meilleur accès aux soins et une amélioration globale du niveau et des conditions de vie des individus. <br /><br />
                     <span>Critiques :</span><br />
-                    Nous constatons une augmentation des causes de décès lié au maladies, mais nous ne montrons pas l'évolution de la population sur cette même période donc il se peut que cette croissance est mécanique, elle ne signifie pas nécessairement qu'il existe un facteur aggravant.<br />
+                    Nous constatons une augmentation des causes de décès lié aux maladies, mais nous ne montrons pas l'évolution de la population sur cette même période donc il se peut que cette croissance soit mécanique, elle ne signifie pas nécessairement qu'il existe un facteur aggravant.<br />
                 </p>
 
                 <h4 class="margin">Traitement des données</h4>
                 <p class="justify">
                     Les données brutes sont proposées par <a href="https://ourworldindata.org/">Our World in Data</a> via l'intermédiaire de plusieurs fichiers CSV. Chaque fichier contenant diverses données sur les causes de décès.<br />
-                    Nous avons ensuite appliqué un pré-traitement de ces données, à l’aide d’un script javascript permettant de transformer le fichier CSV en fichier JSON.<br />
-                    Ce pré-traitement consiste d'abord à réaliser l'aggrégation des entrées issus du fichier .csv par pays puis de leur associer les causes de décès groupés par année.<br />
+                    Nous avons ensuite appliqué un prétraitement de ces données, à l’aide d’un script JavaScript permettant de transformer le fichier CSV en fichier JSON.<br />
+                    Ce prétraitement consiste d'abord à réaliser l'agrégation des entrées issues du fichier .csv par pays puis de leur associer les causes de décès groupés par année.<br />
                     Enfin, nous avons retenu les 10 principales causes de décès (ou des causes économiques, sociales...).
                 </p>
 
@@ -53,7 +53,7 @@ const Rapport = () => {
                     &bull;&nbsp;&nbsp;&nbsp;&nbsp; <span class="bold">/Map</span> : éléments constituant la vue principales de la Map<br />
                     &bull;&nbsp;&nbsp;&nbsp;&nbsp; <span class="bold">/NavBar</span> : éléments constituant le conteneur de la Map<br />
                     &bull;&nbsp;&nbsp;&nbsp;&nbsp; <span class="bold">/Rapport</span> : éléments constituant le contenu du rapport<br />
-                    &bull; <span class="bold">/Data</span> : contient les dataset, le script de traitement et les données traités prêt à être exploités<br />
+                    &bull; <span class="bold">/Data</span> : contient les dataset, le script de traitement et les données traitées prêtes à être exploitées<br />
                     &bull; <span class="bold">/Ressources</span> : contient diverses ressources (une image du rapport GreenIt)<br />
                     &bull; <span class="bold">/Utils</span> : contient les fonctions utilitaires (regression linéaire)<br />
                     &bull; <span class="bold">/App.js</span> : contient la vue principale qui est composé du composant Map<br />
@@ -74,22 +74,22 @@ const Rapport = () => {
 
                 <h4 class="margin">Interactions </h4>
                 <p class="justify">
-                    Notre application montre dans une premier temps, les principales causes de décès dans le monde par pays. <br />
+                    Notre application montre, dans un premier temps, les principales causes de décès dans le monde par pays. <br />
                     Nous offrons à l'utilisateur la possibilité de suivre l'évolution des principales causes dans le monde à travers le slider par année accompagné d'une animation. <br />
-                    Sur la carte principale, il est également possible de cliquer sur la position d'un pays pour afficher une fenêtre modale qui nous montre l'évolution des principales causes de mort dans le pays sélectionnés.<br />
-                    Les causes de décès que nous avons sélectionnés en légende sont également cliquable pour l'utilisateur, lui permettant de voir la part des décès dans le monde lié à la cause sélectionné.<br />
+                    Sur la carte principale, il est également possible de cliquer sur la position d'un pays pour afficher une fenêtre modale qui nous montre l'évolution des principales causes de mort dans le pays sélectionné.<br />
+                    Les causes de décès que nous avons sélectionnés en légende sont également cliquable pour l'utilisateur, lui permettant de voir la part des décès dans le monde lié à la cause sélectionnée.<br />
                 </p>
 
 
                 <h4 class="margin">GreenIT Analysis</h4>
                 <p class="justify">
                     <img src={greenIT_results} alt="Résultats GreenIT Analysis" /><br/>
-                    Le minimalisme et le caractère serverless du projet nous garantie un faible impact écologique.
+                    Le minimalisme et le caractère serverless du projet nous garantit un faible impact écologique.
                 </p>
 
                 <h4 class="margin">Github</h4>
                 <p class="justify">
-                    Pour plus aller plus loin, vous trouverez les sources dans le dépôt Git suivant: <a href="https://github.com/ToudertiHiba/Open-Data/">Open-Data</a>
+                    Pour plus aller plus loin, vous trouverez les sources dans le dépôt Git suivant : <a href="https://github.com/ToudertiHiba/Open-Data/">Open-Data</a>
                 </p>
             </div>
         </div>
