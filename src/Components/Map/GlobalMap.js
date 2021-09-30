@@ -231,7 +231,7 @@ const GlobalMap = (props) => {
                         </div>
                     </ReactModal>
                 ) : (
-                    <Map style={{ height: "80vh", width: "120vh", marginLeft: "5cm", marginTop: "10px" }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds}  >
+                    <Map style={{ height: "80vh", width: "130vh", marginLeft: 20, marginTop: 20 }} zoom={2} center={[10, 10, 10]} maxZoom={6} minZoom={2} maxBounds={mapBounds}  >
                         <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry} ></GeoJSON>
                     </Map>
                 )}
