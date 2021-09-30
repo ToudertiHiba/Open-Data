@@ -1,4 +1,4 @@
-import JSONdata from './../../Data/countries.json'
+import JSONdata from '../../Data/countries.json'
 import React, { useEffect, useState } from 'react';
 import ChartRace from 'react-chart-race';
 import Button from 'react-bootstrap/Button';
@@ -24,12 +24,10 @@ const Slider = (props) => {
     const years = Object.keys(country.years);
     var fullData = []
 
-
     years.forEach(year => {
         const labels = Object.keys(country.years[year])
         const dataset = Object.values(country.years[year])
-        
-    const colors = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
+        const colors = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
     
         var dataYear = {}
         dataYear.name = year
@@ -43,7 +41,6 @@ const Slider = (props) => {
             value["color"] = colors[i]
             dataYear.value.push(value)
         }
-
         fullData.push(dataYear)
     });
     const [play, setPlay] = useState(true)
@@ -58,8 +55,6 @@ const Slider = (props) => {
                 else {
                     setYearId(parseInt(yearId) + 1)
                 }
-
-
                 setData(fullData[yearId].value);
             }
         }, 1000);
@@ -73,7 +68,6 @@ const Slider = (props) => {
         <div >
             <div style={{textAlign:"left",fontSize:"20px"}}><h3>{country.countryName} {fullData[Math.min(yearId, years.length - 1)].name}</h3></div>
             <div style={{marginLeft:"12.5cm"}} >
-                
                 <ChartRace
                     data={data}
                     padding={10}
@@ -85,7 +79,6 @@ const Slider = (props) => {
             </div>
             <div >
                 <div style={{marginLeft:"20cm"}}>
-                    
                     <Button style={{ width: 60, height: 60, borderRadius: "50%", display: "inline-block" }} togglable={"true"} onClick={() => setPlay(!play)}>
                         {play ? (
 
@@ -96,7 +89,6 @@ const Slider = (props) => {
                         )}
                     </Button>
                 </div>
-
                 <RangeSlider
                     value={parseInt(fullData[Math.min(yearId, years.length - 1)].name)}
                     min={parseInt(fullData[0].name)}
@@ -117,7 +109,6 @@ const Slider = (props) => {
                     }
                 />
             </div>
-
         </div>
     );
 }

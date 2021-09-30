@@ -1,12 +1,12 @@
 
 import React from 'react';
-import MyMapBackup from './Components/Map/MyMapBackup';
+import GlobalMap from './Components/Map/GlobalMap';
 import './App.css';
 
 const App = () => {
   return (
     <div>
-    <MyMapBackup />
+    <GlobalMap />
     </div>
   )
 }

@@ -7,19 +7,17 @@ import RangeSlider from 'react-bootstrap-range-slider';
 import DataTable from "react-data-table-component";
 import ReactModal from 'react-modal';
 import CauseMap from './CauseMap';
-
 import countries from './../../Data/countries-50m.json';
-
 import ListCountry from './../../Data/countries.json';
 import NavBar from './../NavBar/Navbar'
-import AnimatableBarChart2 from '../BarChart/AnimatableBarChart2'
+import BarChart from '../BarChart/BarChart'
 
 import "./grid-container.css";
 import "leaflet/dist/leaflet.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
-const MyMapBackup = (props) => {
+const GlobalMap = (props) => {
     const years = Object.keys(ListCountry[0].years)
     const [yearId, setYearId] = useState(0)
 
@@ -226,7 +224,7 @@ const MyMapBackup = (props) => {
                     <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" }, content: { margin: "50px" } }} >
                         <div>
                             <Button className="button1" onClick={closeModal2}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
-                            <AnimatableBarChart2 countryCode={countryCode}></AnimatableBarChart2>
+                            <BarChart countryCode={countryCode}></BarChart>
 
                         </div>
                     </ReactModal>
@@ -298,4 +296,4 @@ const MyMapBackup = (props) => {
     )
 }
 
-export default MyMapBackup
+export default GlobalMap
