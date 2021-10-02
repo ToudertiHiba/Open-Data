@@ -41,7 +41,7 @@ const GlobalMap = (props) => {
         "Suicides",
         "Diabètes"]
     const causeColor = ["#808000", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#4363d8", "#911eb4", "#3cb44b", "#f032e6", "#dcbeff", "#aaffc3", "#000075", "#008080"]
-    
+
     const noDataColor = "red"
 
     const getColor = (cause) => {
@@ -73,13 +73,13 @@ const GlobalMap = (props) => {
     const tableCauseColumns = [
         {
             name: "Cause",
-            selector: "cause",
+            selector: (row) => row.cause,
             sortable: false,
             style: "cursor: pointer;"
         },
         {
             name: "Couleur",
-            selector: "couleur",
+            selector: (row) => row.couleur,
             sortable: false,
             maxWidth: "20px"
         }
@@ -104,12 +104,12 @@ const GlobalMap = (props) => {
             clearInterval(interval);
         };
     });
-    
+
     const getPrincipalCause = (code, Year) => {
         let objet = {};
         let ab = ["b"]
         ListCountry.forEach(country => {
-            
+
             if (country.code === code) {
                 objet = country.years[Year];
                 if (objet === undefined) {
@@ -117,10 +117,8 @@ const GlobalMap = (props) => {
                     return ab;
                 }
                 else {
-
-                    ab = Object.keys(objet).filter(x => {
-                        return objet[x] == Math.max.apply(null,
-                            Object.values(objet));
+                    ab = Object.keys(objet).filter(cause => {
+                        return parseFloat(objet[cause]) === Math.max.apply(null, Object.values(objet));
                     });
                     return ab;
 
@@ -151,7 +149,7 @@ const GlobalMap = (props) => {
 
     function closeModal() {
         setIsOpen(false);
-    } 
+    }
     const [modalIsOpen2, setIsOpen2] = React.useState(false);
     function openModal2() {
         setIsOpen2(true);
@@ -170,7 +168,7 @@ const GlobalMap = (props) => {
         layer.on({
             click: (event) => {
                 const countryCode = event.target.feature.id
-                
+
                 ListCountry.forEach(country => {
 
                     if (country.code === countryCode) {
@@ -217,13 +215,13 @@ const GlobalMap = (props) => {
 
             <div className="map" style={{ width: "100%" }}>
                 {modalIsOpen ? (
-                    <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" } }}>
+                    <ReactModal isOpen={modalIsOpen} onAfterClose={closeModal} ariaHideApp={false} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" } }}>
                         <Button className="button1" onClick={closeModal}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
                         <CauseMap causeName={causeName} />
 
                     </ReactModal>
                 ) : modalIsOpen2 ? (
-                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" }, content: { margin: "50px" } }} >
+                    <ReactModal isOpen={modalIsOpen2} onAfterClose={closeModal2} ariaHideApp={false} style={{ overlay: { backgroundColor: "rgba(0,0,0,.6)" }, content: { margin: "50px" } }} >
                         <div>
                             <Button className="button1" onClick={closeModal2}><FontAwesomeIcon icon={faTimes} size="2x" /></Button>
                             <BarChart countryCode={countryCode}></BarChart>
