@@ -10,9 +10,9 @@
     'NavBar NavBar NavBar'
     'listCause map map'
     'slider slider slider';
-  grid-gap: 5px;
+  grid-gap: 0px;
   background-color: #dddddd;
-  padding: 10px;
+  padding: 0px;
 }
 
 .grid-container > div {
