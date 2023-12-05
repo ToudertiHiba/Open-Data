@@ -119,7 +119,7 @@ const GlobalMap = (props) => {
                 else {
 
                     ab = Object.keys(objet).filter(x => {
-                        return objet[x] == Math.max.apply(null,
+                        return objet[x] === Math.max.apply(null,
                             Object.values(objet));
                     });
                     return ab;
